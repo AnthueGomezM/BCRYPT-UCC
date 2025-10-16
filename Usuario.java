@@ -1,3 +1,5 @@
+import java.util.Base64;
+
 public class Usuario {
 
     private int idUsuario;
@@ -33,5 +35,6 @@ public class Usuario {
     public void setContraseniaUsuario(String contraseniaUsuario) {
         this.contraseniaUsuario = contraseniaUsuario;
     }
+
 
 }
