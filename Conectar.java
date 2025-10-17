@@ -1,3 +1,4 @@
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public class Conectar {
@@ -21,11 +22,16 @@ public class Conectar {
         StringBuilder sb = new StringBuilder(nombre);
         String cadenaInvertida = sb.reverse().toString();
         String base64cript = Base64.getEncoder().encodeToString(cadenaInvertida.getBytes());
-        return base64cript;
+        StringBuilder hexBuilder = new StringBuilder();
+        for (byte b : base64cript.getBytes(StandardCharsets.UTF_8)) {
+            hexBuilder.append(String.format("%02x", b));
+        }
+        return hexBuilder.toString();
     }
 
     public String salt(Usuario usuario) {
-        return md5.getMd5("" + usuario.getIdUsuario() + usuario.getContraseniaUsuario());
+        String encript = crpit(usuario);
+        return md5.getMd5("" + encript + usuario.getContraseniaUsuario());
     }
 
 }
